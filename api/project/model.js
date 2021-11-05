@@ -13,7 +13,9 @@ async function getProjects(){
 
 async function getProjectById(project_id) {
     const result = await db('projects').where('project_id', project_id).first()
-    return result
+    if(result.project_completed===1){
+        return {...result,project_completed:true }
+    } else {return {...result,project_completed:false}}
   }
 
   async function insertProject(project){
