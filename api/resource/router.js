@@ -9,9 +9,19 @@ router.get('/', async (req,res,next)=>{
         res.status(200).json(resources)
     }
     catch(err){
-        next()
+        next(err)
     }
   })
+
+router.post('/', async (req, res, next)=>{
+    try{
+        const newResource = await Resource.insertResource(req.body)
+        res.status(201).json(newResource)
+    }
+    catch(err){
+        next(err)
+    }
+})
 
 
 router.use((err,req,res,next)=>{
