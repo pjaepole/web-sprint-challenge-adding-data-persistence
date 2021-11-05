@@ -3,8 +3,14 @@ const router = require('express').Router()
 const Task =require('./model')
 
 
-router.get('/', (req,res,next)=>{
-    console.log('task router reached')
+router.get('/', async(req,res,next)=>{
+    try{
+        const tasks= await Task.getTasks()
+        res.status(200).json(tasks)
+      }
+      catch(err){
+        next(err)
+      }
   })
 
 
