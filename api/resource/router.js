@@ -3,7 +3,9 @@ const router = require('express').Router()
 const Resource =require('./model')
 
 
-
+router.get('/', (req,res,next)=>{
+    console.log('resource router reached')
+  })
 
 
 router.use((err,req,res,next)=>{

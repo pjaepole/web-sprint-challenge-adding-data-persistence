@@ -2,7 +2,9 @@
 const router = require('express').Router()
 const Project =require('./model')
 
-
+router.get('/', (req,res,next)=>{
+  console.log('project router reached')
+})
 
 
 
