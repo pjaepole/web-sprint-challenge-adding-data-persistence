@@ -13,7 +13,14 @@ router.get('/', async(req,res,next)=>{
       }
   })
 
-
+  router.post('/',async (req,res,next)=>{
+    try{
+      const newTask= await Task.insertTask(req.body)
+      res.status(201).json(newTask)
+    }catch(err){
+      next(err)
+    }
+  })
 router.use((err,req,res,next)=>{
     res.status(500).json({
         customMessage: 'something went wrong inside the task router',

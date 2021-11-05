@@ -18,7 +18,19 @@ async function getTasks(){
     return boolResult
 }
 
+async function getTaskById(task_id) {
+    const result = await db('tasks').where('task_id', task_id).first()
+    if(result.task_completed===1){
+        return {...result,task_completed:true }
+    } else {return {...result,task_completed:false}}
+  }
 
+  async function insertTask(task){
+    const [task_id] = await db('tasks').insert(task)
+    const foundTask = await getTaskById(task_id)
+    return foundTask
+}
 module.exports ={
-    getTasks
+    getTasks,
+    insertTask
 }
